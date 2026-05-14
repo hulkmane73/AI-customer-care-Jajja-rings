@@ -989,4 +989,275 @@ setTimeout(() => {
     }
 }, 2000);
 </script></body>
-</html>
+</html>/* ============================== ZOMBO AI – MULTI-BRAIN UPGRADE (DeepSeek + Gemini + ChatGPT Style Router) ============================== */
+
+// NOTE: Add your API keys here if you want real AI power const ZOMBO_CONFIG = { openaiKey: "YOUR_OPENAI_KEY", geminiKey: "YOUR_GEMINI_KEY", deepseekKey: "YOUR_DEEPSEEK_KEY" };
+
+// Website knowledge base (so Zombo understands your business) const ZOMBO_KNOWLEDGE = ` You are Zombo, AI assistant for Jajja Rings.
+
+Business:
+
+Spiritual crystal rings for love, wealth, protection, luck, fertility
+
+WhatsApp order: +256787329794
+
+Brand name: Jajja Rings
+
+
+Products:
+
+Citrine = wealth, promotion, money attraction
+
+Rose Quartz = love, relationships
+
+Black Onyx = protection, negativity shield
+
+Green Aventurine = luck and opportunity
+
+
+Rules:
+
+Always recommend products based on user emotion/intent
+
+Always offer WhatsApp ordering when user wants to buy
+
+Be spiritual, persuasive, and customer focused `;
+
+
+async function callOpenAI(prompt){ if(!ZOMBO_CONFIG.openaiKey) return null; try{ const res = await fetch("https://api.openai.com/v1/chat/completions",{ method:"POST", headers:{ "Content-Type":"application/json", "Authorization":"Bearer " + ZOMBO_CONFIG.openaiKey }, body: JSON.stringify({ model:"gpt-4o-mini", messages:[ {role:"system",content:ZOMBO_KNOWLEDGE}, {role:"user",content:prompt} ] }) }); const data = await res.json(); return data.choices?.[0]?.message?.content || null; }catch(e){return null;} }
+
+async function callGemini(prompt){ if(!ZOMBO_CONFIG.geminiKey) return null; try{ const res = await fetch( "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=" + ZOMBO_CONFIG.geminiKey, { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({ contents:[{parts:[{text:ZOMBO_KNOWLEDGE + " User: " + prompt}]}] }) } ); const data = await res.json(); return data.candidates?.[0]?.content?.parts?.[0]?.text || null; }catch(e){return null;} }
+
+async function callDeepSeek(prompt){ if(!ZOMBO_CONFIG.deepseekKey) return null; try{ const res = await fetch("https://api.deepseek.com/chat/completions",{ method:"POST", headers:{ "Content-Type":"application/json", "Authorization":"Bearer " + ZOMBO_CONFIG.deepseekKey }, body:JSON.stringify({ model:"deepseek-chat", messages:[ {role:"system",content:ZOMBO_KNOWLEDGE}, {role:"user",content:prompt} ] }) }); const data = await res.json(); return data.choices?.[0]?.message?.content || null; }catch(e){return null;} }
+
+// SMART AI ROUTER (tries all brains) async function getSmartZomboReply(userMessage, context=""){
+
+const finalPrompt = context 
+    ? `Context: ${context}
+
+User: ${userMessage}` : userMessage;
+
+// Try strongest models first
+let reply = await callOpenAI(finalPrompt);
+if(reply) return reply;
+
+reply = await callGemini(finalPrompt);
+if(reply) return reply;
+
+reply = await callDeepSeek(finalPrompt);
+if(reply) return reply;
+
+// fallback to old local model if everything fails
+if(conversationGenerator){
+    const result = await conversationGenerator(finalPrompt, {
+        max_new_tokens: 120,
+        temperature: 0.8,
+        do_sample: true
+    });
+    return result?.[0]?.generated_text || "Zombo is thinking...";
+}
+
+return "Zombo AI is offline. Please try again later.";
+
+}
+
+// OPTIONAL: Replace old function // Replace your existing getAIReply with: // async function getAIReply(msg, context){ return getSmartZomboReply(msg, context); }
+
+/* ===================================================== ZOMBO AI – FULL SUPER UPGRADE SUITE Voice AI + WhatsApp Auto Orders + Payments UI + Admin Panel ===================================================== */
+
+/* =========================
+
+1. VOICE AI (Speech API) ========================= */
+
+
+
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition; let recognition; let voiceEnabled = false;
+
+if (SpeechRecognition) { recognition = new SpeechRecognition(); recognition.continuous = false; recognition.lang = 'en-US';
+
+recognition.onresult = (event) => {
+    const text = event.results[0][0].transcript;
+    inputField.value = text;
+    sendMessage();
+};
+
+}
+
+function toggleVoice(){ if(!recognition) return alert("Voice not supported in this browser"); voiceEnabled = !voiceEnabled; if(voiceEnabled) recognition.start(); }
+
+/* Add button in UI (optional inject) */ const voiceBtn = document.createElement('button'); voiceBtn.innerText = "🎤 Voice"; voiceBtn.className = "zombo-websearch-toggle"; voiceBtn.onclick = toggleVoice;
+
+if(document.querySelector('.zombo-input-area')){ document.querySelector('.zombo-input-area').appendChild(voiceBtn); }
+
+/* ========================= 2. WHATSAPP ORDER ENGINE ========================= */
+
+function buildWhatsAppOrder(product="General Ring"){ const phone = "256787329794"; const message = encodeURIComponent( Hello Jajja Rings 💍 I want to order: ${product} Please assist me with checkout. ); return https://wa.me/${phone}?text=${message}; }
+
+function openWhatsAppOrder(product){ window.open(buildWhatsAppOrder(product), "_blank"); }
+
+/* AUTO-DETECT BUY INTENT */ function detectOrderIntent(text){ const keywords = ["buy","order","purchase","want ring","price","shop"]; return keywords.some(k => text.toLowerCase().includes(k)); }
+
+/* ========================= 3. PAYMENT GATEWAY UI (MOCK) ========================= */
+
+function openPaymentPanel(){
+
+const panel = document.createElement('div');
+panel.style = `
+    position:fixed;bottom:0;left:0;right:0;
+    background:white;padding:20px;
+    box-shadow:0 -5px 20px rgba(0,0,0,0.3);
+    z-index:99999;
+`;
+
+panel.innerHTML = `
+    <h3>💳 Payment Options</h3>
+    <button onclick="window.open('https://wa.me/256787329794','_blank')">WhatsApp Pay</button>
+    <button onclick="alert('MTN Mobile Money: Send to 256787329794')">MTN MoMo</button>
+    <button onclick="alert('Airtel Money: Send to 256787329794')">Airtel Money</button>
+    <button onclick="this.parentElement.remove()">Close</button>
+`;
+
+document.body.appendChild(panel);
+
+}
+
+/* ========================= 4. ADMIN DASHBOARD (LOCAL STORAGE) ========================= */
+
+function saveOrder(order){ let orders = JSON.parse(localStorage.getItem('zombo_orders') || "[]"); orders.push(order); localStorage.setItem('zombo_orders', JSON.stringify(orders)); }
+
+function getOrders(){ return JSON.parse(localStorage.getItem('zombo_orders') || "[]"); }
+
+function openAdminPanel(){
+
+const orders = getOrders();
+
+const panel = document.createElement('div');
+panel.style = `
+    position:fixed;top:0;left:0;width:100%;height:100%;
+    background:white;z-index:99999;overflow:auto;padding:20px;
+`;
+
+panel.innerHTML = `
+    <h2>🧾 Zombo Admin Dashboard</h2>
+    <p>Total Orders: ${orders.length}</p>
+    <pre>${JSON.stringify(orders, null, 2)}</pre>
+    <button onclick="this.parentElement.remove()">Close</button>
+`;
+
+document.body.appendChild(panel);
+
+}
+
+/* ========================= 5. AUTO INTEGRATION INTO CHAT ========================= */
+
+const originalSend = sendMessage;
+
+sendMessage = async function(){
+
+const text = inputField.value.trim();
+
+if(detectOrderIntent(text)){
+    saveOrder({text, time:Date.now()});
+    addMessage("🛒 Redirecting you to WhatsApp order...", false);
+    window.open(buildWhatsAppOrder(text), "_blank");
+}
+
+await originalSend();
+
+};
+
+/* ========================= 6. EXTRA BUTTONS (AUTO UI) ========================= */
+
+const extraTools = document.createElement('div'); extraTools.style = "display:flex;gap:5px;margin-top:5px;flex-wrap:wrap;";
+
+extraTools.innerHTML = <button class="zombo-websearch-toggle" onclick="openPaymentPanel()">💳 Pay</button> <button class="zombo-websearch-toggle" onclick="openAdminPanel()">🧾 Admin</button>;
+
+setTimeout(()=>{ const area = document.querySelector('.zombo-input-area'); if(area) area.appendChild(extraTools); },1000);
+
+/* ========================= END OF SUPER UPGRADE ========================= */
+
+/* ===================================================== ZOMBO AI – REAL E-COMMERCE SYSTEM (PRODUCTION UPGRADE) Firebase + Stripe + WhatsApp Business + Live Database ===================================================== */
+
+/* =========================
+
+1. FIREBASE BACKEND SETUP ========================= */
+
+
+
+// Install (for real project): // npm install firebase
+
+import { initializeApp } from "firebase/app"; import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+
+const firebaseConfig = { apiKey: "YOUR_FIREBASE_API_KEY", authDomain: "YOUR_PROJECT.firebaseapp.com", projectId: "YOUR_PROJECT_ID", storageBucket: "YOUR_PROJECT.appspot.com", messagingSenderId: "XXXX", appId: "XXXX" };
+
+const app = initializeApp(firebaseConfig); const db = getFirestore(app);
+
+// Save order to REAL database async function saveOrderToCloud(order){ try { await addDoc(collection(db, "orders"), { ...order, createdAt: new Date().toISOString() }); } catch(e){ console.error("Cloud save failed", e); } }
+
+async function loadOrdersFromCloud(){ const snapshot = await getDocs(collection(db, "orders")); return snapshot.docs.map(doc => doc.data()); }
+
+/* ========================= 2. STRIPE PAYMENT SYSTEM ========================= */
+
+async function createStripeCheckout(amount, productName){ // Requires backend server (Node.js) const res = await fetch("/create-checkout-session", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ amount, productName }) });
+
+const data = await res.json();
+
+if(data.url){
+    window.location.href = data.url;
+}
+
+}
+
+/* ========================= 3. WHATSAPP BUSINESS API (ADVANCED) ========================= */
+
+const WHATSAPP_BUSINESS_NUMBER = "256787329794";
+
+function sendWhatsAppOrder(product, name, location){ const msg = encodeURIComponent( 🛍️ NEW ORDER Product: ${product} Name: ${name} Location: ${location} Please confirm. ); window.open(https://wa.me/${WHATSAPP_BUSINESS_NUMBER}?text=${msg}, "_blank"); }
+
+/* ========================= 4. REAL PRODUCT DATABASE ========================= */
+
+const PRODUCTS = [ { id:1, name:"Citrine Prosperity Ring", price:65, power:"wealth + promotion", image:"./images/red-zircon-ring.jpeg" }, { id:2, name:"Rose Quartz Love Ring", price:60, power:"love + relationships", image:"./images/moonstone-ring.jpeg" }, { id:3, name:"Black Onyx Protection Ring", price:70, power:"protection + energy shield", image:"./images/yameni-aqeeq-ring.jpeg" }, { id:4, name:"Green Aventurine Luck Ring", price:62, power:"luck + opportunity", image:"./images/green-jade-ring.jpeg" } ];
+
+/* ========================= 5. SMART AI PRODUCT RECOMMENDER ========================= */
+
+function recommendProduct(intent){
+
+intent = intent.toLowerCase();
+
+if(intent.includes("love")) return PRODUCTS[1];
+if(intent.includes("money") || intent.includes("wealth")) return PRODUCTS[0];
+if(intent.includes("protection")) return PRODUCTS[2];
+if(intent.includes("luck")) return PRODUCTS[3];
+
+return PRODUCTS[0];
+
+}
+
+/* ========================= 6. FULL ORDER FLOW (REAL SYSTEM) ========================= */
+
+async function processOrder(userText){
+
+const product = recommendProduct(userText);
+
+const order = {
+    product: product.name,
+    price: product.price,
+    intent: userText,
+    status:"pending"
+};
+
+// Save to cloud database
+await saveOrderToCloud(order);
+
+// Send to WhatsApp
+sendWhatsAppOrder(product.name, "Customer", "Not provided");
+
+return `🛍️ Order created for ${product.name}. Redirecting to WhatsApp...`;
+
+}
+
+/* ========================= 7. REPLACE CHAT LOGIC ========================= */
+
+// Replace inside sendMessage(): // if(detectOrderIntent(text)){ return processOrder(text); }
+
+/* ========================= END OF REAL E-COMMERCE UPGRADE ========================= */
