@@ -1,0 +1,992 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jajja Rings | Spiritual Rings of Power & Transformation</title><style>
+:root {
+    --red: #d62828;
+    --red-light: #ff4d4d;
+    --black: #0a0a0a;
+    --dark: #141414;
+    --smoke: #f1f1f1;
+    --white: #ffffff;
+    --gray: #777777;
+    --border: #dddddd;
+
+    --shadow: 0 5px 20px rgba(0,0,0,0.15);
+    --shadow-lg: 0 10px 40px rgba(0,0,0,0.25);
+
+    --radius: 16px;
+    --transition: 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--smoke);
+    color: #222;
+    line-height: 1.7;
+}
+
+/* HEADER */
+header {
+    background: rgba(0,0,0,0.95);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 18px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.9rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: var(--red-light);
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 28px;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+nav a:hover {
+    color: var(--red-light);
+}
+
+/* HERO */
+.hero {
+    min-height: 100vh;
+    background:
+        linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+        linear-gradient(160deg,#000000 0%,#1a1a1a 50%,#330000 100%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 40px;
+}
+
+.hero-content {
+    max-width: 900px;
+}
+
+.hero h1 {
+    font-size: 4.5rem;
+    line-height: 1.1;
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: var(--red-light);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: #ddd;
+    margin-bottom: 35px;
+}
+
+.btn {
+    display: inline-block;
+    background: linear-gradient(135deg,var(--red),#7a0000);
+    color: white;
+    padding: 15px 34px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.btn:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* GENERAL SECTIONS */
+.section {
+    padding: 90px 8%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title h2 {
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+}
+
+.section-title p {
+    color: var(--gray);
+    max-width: 700px;
+    margin: auto;
+}
+
+/* ABOUT */
+.about {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+    gap: 40px;
+    align-items: center;
+}
+
+.about-card {
+    background: white;
+    padding: 40px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.about-card h3 {
+    margin-bottom: 20px;
+    color: var(--red);
+    font-size: 1.8rem;
+}
+
+/* PRODUCTS */
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 35px;
+}
+
+.product {
+    background: white;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.product:hover {
+    transform: translateY(-8px);
+}
+
+.product-image {
+    height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5rem;
+    color: white;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.bg1 {
+    background: linear-gradient(135deg,#111111,#3b0000);
+}
+
+.bg2 {
+    background: linear-gradient(135deg,#1a1a1a,#770000);
+}
+
+.bg3 {
+    background: linear-gradient(135deg,#0f0f0f,#990000);
+}
+
+.bg4 {
+    background: linear-gradient(135deg,#111111,#d62828);
+}
+
+.product-content {
+    padding: 28px;
+}
+
+.product-content h3 {
+    margin-bottom: 14px;
+    font-size: 1.4rem;
+}
+
+.product-content p {
+    color: var(--gray);
+    margin-bottom: 18px;
+}
+
+.price {
+    color: var(--red);
+    font-size: 1.7rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* FEATURES */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+    gap: 30px;
+}
+
+.feature {
+    background: white;
+    padding: 35px;
+    border-radius: var(--radius);
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.feature h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.feature h3 {
+    margin-bottom: 10px;
+}
+
+/* TESTIMONIALS */
+.testimonials {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    gap: 30px;
+}
+
+.testimonial {
+    background: white;
+    padding: 35px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.stars {
+    color: var(--red);
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+/* CTA */
+.cta {
+    background: linear-gradient(160deg,#000000,#330000);
+    color: white;
+    text-align: center;
+    padding: 100px 8%;
+}
+
+.cta h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.cta p {
+    max-width: 700px;
+    margin: auto auto 30px;
+    color: #ddd;
+}
+
+/* FOOTER */
+footer {
+    background: black;
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+}
+
+footer p {
+    color: #999;
+}
+
+/* MOBILE */
+@media(max-width: 768px) {
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav a {
+        margin: 0 10px;
+    }
+
+    .hero h1 {
+        font-size: 2.8rem;
+    }
+
+    .section-title h2 {
+        font-size: 2rem;
+    }
+
+    .cta h2 {
+        font-size: 2.2rem;
+    }
+}
+</style></head>
+<body><header>
+    <div class="logo">Jajja <span>Rings</span></div><nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#products">Rings</a>
+    <a href="#reviews">Reviews</a>
+</nav>
+
+</header><section class="hero" id="home">
+    <div class="hero-content">
+        <h1>Wear Your <span>Destiny</span></h1><p>
+        Handcrafted spiritual rings infused with powerful crystal energy,
+        sacred intention, protection and transformation.
+    </p>
+
+    <a href="#products" class="btn">Explore The Collection</a>
+</div>
+
+</section><section class="section" id="about"><div class="section-title">
+    <h2>The Power Behind Jajja Rings</h2>
+    <p>
+        Every ring is crafted to align your energy with prosperity,
+        protection, love, luck and divine transformation.
+    </p>
+</div>
+
+<div class="about">
+
+    <div class="about-card">
+        <h3>Spiritual Transformation</h3>
+
+        <p>
+            At Jajja Rings, we believe true transformation begins with energy.
+            Our handcrafted spiritual rings are more than jewelry — they are
+            sacred talismans of power, protection and possibility.
+        </p>
+
+        <br>
+
+        <p>
+            Each ring is infused with the vibrational essence of genuine crystals,
+            ritually cleansed under the full moon and charged with focused intention.
+        </p>
+    </div>
+
+    <div class="about-card">
+        <h3>Your Energy, Your Destiny</h3>
+
+        <p>
+            Whether you seek wealth, career breakthroughs, deep love,
+            spiritual protection, fertility or luck — there is a ring designed
+            to resonate with your soul’s deepest intention.
+        </p>
+
+        <br>
+
+        <p>
+            Step into your power and allow ancient crystal energy to guide
+            your journey toward abundance and transformation.
+        </p>
+    </div>
+
+</div>
+
+</section><section class="section" id="products"><div class="section-title">
+    <h2>Featured Spiritual Rings</h2>
+    <p>
+        Sacred crystal rings designed to unlock energy, abundance and destiny.
+    </p>
+</div>
+
+<div class="products">
+
+    <div class="product">
+        <div class="product-image bg1">
+            <img src="./images/yameni-aqeeq-ring.jpeg" alt="Black Onyx Protection Ring" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+
+        <div class="product-content">
+            <h3>Black Onyx Protection Ring</h3>
+
+            <p>
+                Forms a spiritual shield against negativity, envy and unseen energies.
+                Walk confidently with warrior-like protection.
+            </p>
+
+            <div class="price">$59</div>
+
+            <a href="https://wa.me/256787329794?text=Hello%20Jajja%20Rings,%20I%20want%20to%20order%20this%20ring." target="_blank" class="btn">Order Now</a>
+        </div>
+    </div>
+
+    <div class="product">
+        <div class="product-image bg2">
+            <img src="./images/red-zircon-ring.jpeg" alt="Citrine Prosperity Ring" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+
+        <div class="product-content">
+            <h3>Citrine Prosperity Ring</h3>
+
+            <p>
+                Magnetize wealth, promotions and financial breakthroughs.
+                Designed to attract abundance effortlessly.
+            </p>
+
+            <div class="price">$75</div>
+
+            <a href="https://wa.me/256787329794?text=Hello%20Jajja%20Rings,%20I%20want%20to%20order%20this%20ring." target="_blank" class="btn">Order Now</a>
+        </div>
+    </div>
+
+    <div class="product">
+        <div class="product-image bg3">
+            <img src="./images/moonstone-ring.jpeg" alt="Rose Quartz Love Ring" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+
+        <div class="product-content">
+            <h3>Rose Quartz Love Ring</h3>
+
+            <p>
+                Harmonizes the heart chakra to attract deep love,
+                emotional healing and soulmate connections.
+            </p>
+
+            <div class="price">$68</div>
+
+            <a href="https://wa.me/256787329794?text=Hello%20Jajja%20Rings,%20I%20want%20to%20order%20this%20ring." target="_blank" class="btn">Order Now</a>
+        </div>
+    </div>
+
+    <div class="product">
+        <div class="product-image bg4">
+            <img src="./images/green-jade-ring.jpeg" alt="Green Aventurine Luck Ring" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+
+        <div class="product-content">
+            <h3>Green Aventurine Luck Ring</h3>
+
+            <p>
+                Shift the currents of fate and welcome lucky opportunities,
+                success and unexpected blessings.
+            </p>
+
+            <div class="price">$72</div>
+
+            <a href="https://wa.me/256787329794?text=Hello%20Jajja%20Rings,%20I%20want%20to%20order%20this%20ring." target="_blank" class="btn">Order Now</a>
+        </div>
+    </div>
+
+</div>
+
+</section><section class="section"><div class="section-title">
+    <h2>Why Choose Jajja Rings</h2>
+    <p>
+        Luxury spiritual jewelry designed with sacred purpose and premium craftsmanship.
+    </p>
+</div>
+
+<div class="features">
+
+    <div class="feature">
+        <h1>🌕</h1>
+        <h3>Moon Cleansed</h3>
+        <p>
+            Every ring is ritually cleansed and spiritually charged under the full moon.
+        </p>
+    </div>
+
+    <div class="feature">
+        <h1>💎</h1>
+        <h3>Authentic Crystals</h3>
+        <p>
+            Crafted with genuine crystal stones chosen for their sacred energy.
+        </p>
+    </div>
+
+    <div class="feature">
+        <h1>✨</h1>
+        <h3>Manifestation Energy</h3>
+        <p>
+            Designed to align your intentions with love, luck, wealth and protection.
+        </p>
+    </div>
+
+    <div class="feature">
+        <h1>🛡️</h1>
+        <h3>Spiritual Protection</h3>
+        <p>
+            Carry powerful energetic protection everywhere you go.
+        </p>
+    </div>
+
+</div>
+
+</section><section class="section" id="reviews"><div class="section-title">
+    <h2>Customer Experiences</h2>
+    <p>
+        Hear how Jajja Rings transformed lives and awakened new possibilities.
+    </p>
+</div>
+
+<div class="testimonials">
+
+    <div class="testimonial">
+        <div class="stars">★★★★★</div>
+
+        <p>
+            “Two weeks after wearing my Citrine Prosperity Ring,
+            I finally received the promotion I had been praying for.”
+        </p>
+
+        <br>
+
+        <strong>— Naomi A.</strong>
+    </div>
+
+    <div class="testimonial">
+        <div class="stars">★★★★★</div>
+
+        <p>
+            “The Black Onyx ring gives me peace and confidence.
+            I genuinely feel spiritually protected every day.”
+        </p>
+
+        <br>
+
+        <strong>— Michael K.</strong>
+    </div>
+
+    <div class="testimonial">
+        <div class="stars">★★★★★</div>
+
+        <p>
+            “Beautiful craftsmanship and powerful energy.
+            The Rose Quartz ring brought so much healing into my life.”
+        </p>
+
+        <br>
+
+        <strong>— Sarah T.</strong>
+    </div>
+
+</div>
+
+</section><section class="cta"><h2>Your Transformation Begins Now</h2>
+
+<p>
+    Whether you seek wealth, deep love, luck, protection or spiritual balance,
+    Jajja Rings was created to help align your destiny with divine energy.
+</p>
+
+<a href="#products" class="btn">Claim Your Ring</a>
+
+</section><section class="section"><div class="section-title">
+    <h2>Payment Methods</h2>
+    <p>
+        Secure and trusted payment options available worldwide.
+    </p>
+</div>
+
+<div class="features">
+
+    <div class="feature">
+        <img src="./logos/western-union.png" alt="Western Union" style="width:120px;height:auto;margin-bottom:15px;">
+        <h3>Western Union</h3>
+    </div>
+
+    <div class="feature">
+        <img src="./logos/moneygram.png" alt="MoneyGram" style="width:120px;height:auto;margin-bottom:15px;">
+        <h3>MoneyGram</h3>
+    </div>
+
+    <div class="feature">
+        <img src="./logos/mtn.png" alt="MTN Mobile Money" style="width:120px;height:auto;margin-bottom:15px;">
+        <h3>MTN Mobile Money</h3>
+    </div>
+
+    <div class="feature">
+        <img src="./logos/airtel.png" alt="Airtel Money" style="width:120px;height:auto;margin-bottom:15px;">
+        <h3>Airtel Money</h3>
+    </div>
+
+</div>
+
+</section><section class="cta"><h2>Order Directly On WhatsApp</h2>
+
+<p>
+    Ready to begin your spiritual transformation? Contact Jajja Rings directly on WhatsApp.
+</p>
+
+<a href="https://wa.me/256787329794" target="_blank" class="btn">
+    Chat on WhatsApp: +256 787 329 794
+</a>
+
+</section><footer>
+    <h2>Jajja Rings</h2>
+    <br>
+    <p>
+        © 2026 Jajja Rings. Spiritual Jewelry for Power, Love & Transformation.
+    </p>
+</footer><!-- ADVANCED ZOMBO AI CUSTOMER CARE --><script type="importmap">
+{
+    "imports": {
+        "@huggingface/transformers": "https://unpkg.com/@huggingface/transformers@2.12.0/dist/transformers.min.js"
+    }
+}
+</script><button class="zombo-button" id="zombo-open">💬 Zombo AI</button>
+
+<div class="zombo-window" id="zombo-window"><div class="zombo-header">
+    <span>🤖 Zombo AI – Anything is possible</span>
+    <button class="zombo-close" id="zombo-close">✖</button>
+</div>
+
+<div class="zombo-messages" id="zombo-messages">
+    <div class="message bot">
+        Welcome to Jajja Rings ✨
+        I am Zombo AI, your spiritual customer care assistant.
+        Ask me about rings, prices, delivery, protection, love, wealth or ordering.
+    </div>
+</div>
+
+<div class="zombo-input-area">
+    <input type="text" class="zombo-input" id="zombo-input" placeholder="Ask Zombo anything...">
+    <button class="zombo-send" id="zombo-send">Send</button>
+    <button class="zombo-websearch-toggle" id="websearch-toggle">🌐 Off</button>
+</div>
+
+<div class="status-bar" id="status-bar">
+    ⚡ Zombo AI loading...
+</div>
+
+</div><style>
+.zombo-button {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: linear-gradient(135deg,#d62828,#7a0000);
+    color: white;
+    border: none;
+    border-radius: 60px;
+    padding: 14px 24px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    z-index: 10000;
+}
+
+.zombo-window {
+    position: fixed;
+    bottom: 90px;
+    right: 24px;
+    width: 380px;
+    max-width: calc(100vw - 40px);
+    height: 550px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 10001;
+}
+
+.zombo-header {
+    background: linear-gradient(135deg,#000000,#7a0000);
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+
+.zombo-close {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.zombo-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px;
+    background: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message {
+    max-width: 85%;
+    padding: 10px 14px;
+    border-radius: 20px;
+    line-height: 1.5;
+    font-size: 0.92rem;
+}
+
+.user {
+    background: #d62828;
+    color: white;
+    align-self: flex-end;
+}
+
+.bot {
+    background: white;
+    color: black;
+    align-self: flex-start;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.typing {
+    font-style: italic;
+    color: #666;
+}
+
+.zombo-input-area {
+    display: flex;
+    gap: 8px;
+    padding: 12px;
+    border-top: 1px solid #ddd;
+    flex-wrap: wrap;
+}
+
+.zombo-input {
+    flex: 1;
+    padding: 12px 14px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    outline: none;
+}
+
+.zombo-send {
+    background: #d62828;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 0 18px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.zombo-websearch-toggle {
+    background: #efefef;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    padding: 0 14px;
+    cursor: pointer;
+}
+
+.status-bar {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+    background: #f1f1f1;
+    text-align: center;
+    border-top: 1px solid #ddd;
+}
+
+@media(max-width:480px) {
+    .zombo-window {
+        width: 95vw;
+        right: 2.5vw;
+        height: 70vh;
+    }
+}
+</style><script type="module">
+import { pipeline, env } from '@huggingface/transformers';
+
+env.allowLocalModels = false;
+env.useBrowserCache = true;
+
+const windowDiv = document.getElementById('zombo-window');
+const openBtn = document.getElementById('zombo-open');
+const closeBtn = document.getElementById('zombo-close');
+const messagesDiv = document.getElementById('zombo-messages');
+const inputField = document.getElementById('zombo-input');
+const sendBtn = document.getElementById('zombo-send');
+const webToggle = document.getElementById('websearch-toggle');
+const statusBar = document.getElementById('status-bar');
+
+let webSearchEnabled = false;
+let conversationGenerator = null;
+let modelReady = false;
+
+const CORS_PROXY = 'https://api.allorigins.win/raw?url=';
+
+async function searchDuckDuckGo(query) {
+    const url = `https://html.duckduckgo.com/html/?q=${encodeURIComponent(query)}`;
+    const proxyUrl = CORS_PROXY + encodeURIComponent(url);
+
+    try {
+        const res = await fetch(proxyUrl);
+        const html = await res.text();
+
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+
+        const snippets = Array.from(doc.querySelectorAll('.result__snippet'))
+            .slice(0,3)
+            .map(el => el.innerText.trim())
+            .filter(t => t.length > 0);
+
+        return snippets.join(' ');
+    } catch(e) {
+        return '';
+    }
+}
+
+function addMessage(text, isUser, typing=false) {
+    const div = document.createElement('div');
+    div.className = `message ${isUser ? 'user' : 'bot'}`;
+
+    if(typing) div.classList.add('typing');
+
+    div.innerText = text;
+    messagesDiv.appendChild(div);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+    return div;
+}
+
+function removeLastMessage() {
+    if(messagesDiv.lastChild) {
+        messagesDiv.removeChild(messagesDiv.lastChild);
+    }
+}
+
+async function getAIReply(userMessage, context='') {
+
+    if(userMessage.toLowerCase().includes('order')) {
+        return 'You can order directly on WhatsApp here: https://wa.me/256787329794';
+    }
+
+    if(userMessage.toLowerCase().includes('whatsapp')) {
+        return 'Contact Jajja Rings on WhatsApp: +256 787 329 794';
+    }
+
+    if(!modelReady || !conversationGenerator) {
+        return 'Zombo AI is still loading. Please wait a moment.';
+    }
+
+    let prompt = userMessage;
+
+    if(context) {
+        prompt = `Context: ${context}
+Question: ${userMessage}`;
+    }
+
+    try {
+        const result = await conversationGenerator(prompt, {
+            max_new_tokens: 80,
+            temperature: 0.8,
+            top_p: 0.9,
+            do_sample: true
+        });
+
+        let generated = result[0].generated_text;
+
+        if(generated.startsWith(prompt)) {
+            generated = generated.slice(prompt.length).trim();
+        }
+
+        return generated || 'Anything is possible ✨';
+
+    } catch(e) {
+        return 'Zombo encountered an error. Please try again.';
+    }
+}
+
+async function sendMessage() {
+
+    const text = inputField.value.trim();
+
+    if(!text) return;
+
+    addMessage(text, true);
+
+    inputField.value = '';
+
+    addMessage('⚡ Zombo is thinking...', false, true);
+
+    let searchContext = '';
+
+    if(webSearchEnabled) {
+        statusBar.innerText = '🌐 Searching the web...';
+        searchContext = await searchDuckDuckGo(text);
+    }
+
+    const reply = await getAIReply(text, searchContext);
+
+    removeLastMessage();
+
+    addMessage(reply, false);
+
+    statusBar.innerText = '✅ Zombo AI ready';
+}
+
+async function loadModel() {
+
+    statusBar.innerText = '📥 Downloading AI model...';
+
+    try {
+        conversationGenerator = await pipeline('text-generation', 'Xenova/dialogpt-small');
+
+        modelReady = true;
+
+        statusBar.innerText = '✅ Zombo AI fully loaded';
+
+        addMessage('✨ Zombo AI is now online and ready to assist.', false);
+
+    } catch(e) {
+        statusBar.innerText = '❌ Failed to load AI model';
+    }
+}
+
+openBtn.onclick = () => {
+    windowDiv.style.display = 'flex';
+
+    if(!modelReady && !conversationGenerator) {
+        loadModel();
+    }
+}
+
+closeBtn.onclick = () => {
+    windowDiv.style.display = 'none';
+}
+
+sendBtn.onclick = sendMessage;
+
+inputField.addEventListener('keypress', function(e) {
+    if(e.key === 'Enter') {
+        sendMessage();
+    }
+});
+
+webToggle.onclick = () => {
+    webSearchEnabled = !webSearchEnabled;
+
+    webToggle.innerText = webSearchEnabled ? '🌐 On' : '🌐 Off';
+}
+
+setTimeout(() => {
+    if(!modelReady && !conversationGenerator) {
+        loadModel();
+    }
+}, 2000);
+</script></body>
+</html>
